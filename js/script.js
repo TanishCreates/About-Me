@@ -42,7 +42,7 @@ const profile = {
   track: "Your Spotify profile",
   artist: "Open Spotify →",
   watching: "The Mentalist",
-  watchDescription: "Currently watching — update this whenever the archive changes."
+  watchDescription: "A crime drama following Patrick Jane, a former psychic medium who uses his exceptional observation and deduction skills to help solve complicated cases."
 };
 
 document.querySelector("#miniTrack").textContent = profile.track;
