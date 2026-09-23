@@ -1,0 +1,219 @@
+*{box-sizing:border-box}
+:root{--bg:#0b0b0b;--panel:#101010;--panel2:#151515;--line:#292929;--line2:#3c3c3c;--text:#ececec;--muted:#858585;--soft:#b7b7b7;--accent:#e9e5d9}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;min-height:100vh;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:90px 90px;pointer-events:none;z-index:-3}
+.noise{position:fixed;inset:0;opacity:.045;pointer-events:none;z-index:50;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E")}
+.scanline{position:fixed;left:0;right:0;height:1px;background:rgba(255,255,255,.035);animation:scan 9s linear infinite;pointer-events:none;z-index:40}
+@keyframes scan{from{top:-2px}to{top:100vh}}
+.topbar{height:88px;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;border-bottom:1px solid #171717;position:relative;z-index:2}
+.brand,.signal{font:500 11px "DM Mono",monospace;letter-spacing:.35em;color:#aaa;text-decoration:none}
+.signal{border:1px solid var(--line2);padding:12px 22px;color:#ddd}
+.signal-dot{display:inline-block;width:5px;height:5px;background:#ddd;border-radius:50%;margin-right:8px;box-shadow:0 0 10px #fff}
+.page{width:min(1240px,90vw);margin:52px auto 80px;display:grid;grid-template-columns:330px 1fr;gap:56px}
+.sidebar{position:sticky;top:30px;height:max-content}
+.card{border:1px solid #1e1e1e;background:rgba(12,12,12,.82);position:relative}
+.card:before,.card:after{content:"";position:absolute;width:18px;height:18px;pointer-events:none}
+.card:before{left:-1px;top:-1px;border-left:1px solid #555;border-top:1px solid #555}
+.card:after{right:-1px;top:-1px;border-right:1px solid #555;border-top:1px solid #555}
+.identity{min-height:500px;padding:48px 34px;text-align:center;display:flex;flex-direction:column;align-items:center}
+.eyebrow{font:500 11px "DM Mono",monospace;letter-spacing:.32em;color:#c6c6c6;margin:0 0 28px;text-transform:uppercase}
+.portrait-wrap{position:relative;margin:8px 0 18px}
+.portrait{width:145px;height:145px;border:1px solid #555;background:linear-gradient(135deg,#252525,#0e0e0e);display:grid;place-items:center;color:#777;font:11px "DM Mono";letter-spacing:.18em;filter:grayscale(1)}
+.portrait:before{content:"";position:absolute;inset:8px;border:1px solid #303030}
+.cross{position:absolute;right:-9px;bottom:-7px;font-size:30px;line-height:1;color:#ddd}
+.display-name,.hero-title,.project-title,.archive-title,.contact-title{font-family:"UnifrakturCook",Georgia,serif;font-weight:700}
+.display-name{font-size:58px;margin:5px 0 4px;line-height:1}
+.meta{font:11px "DM Mono";letter-spacing:.3em;color:#858585}
+.quote{margin-top:auto;font:15px Georgia,serif;color:#999;line-height:1.5}
+.side-panel{margin-top:26px;padding:34px 30px}
+.status-box{border:1px solid #4a4a4a;padding:18px;display:flex;gap:14px;align-items:center}
+.avatar-placeholder{width:52px;height:52px;border:1px solid #666;display:grid;place-items:center;font:16px "DM Mono";background:#181818}
+.status-box strong,.music-mini strong{font-size:13px;display:block}
+.status-box small,.music-mini small{display:block;color:#777;font:9px "DM Mono";letter-spacing:.18em;margin-top:7px}
+.status-box i{display:inline-block;width:6px;height:6px;background:#aaa;border-radius:50%;margin-right:5px}
+.side-label{margin-top:38px;margin-bottom:17px}
+.music-mini{border:1px solid #353535;padding:14px;display:flex;gap:12px;align-items:center}
+.album{width:45px;height:45px;background:#222;border:1px solid #555;display:grid;place-items:center;font-size:22px}
+.connections{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.connections a{border:1px solid #404040;padding:14px 10px;color:#ddd;text-decoration:none;font:500 10px "DM Mono";letter-spacing:.12em;transition:.25s}
+.connections a:hover{background:#eee;color:#111}
+.content{display:flex;flex-direction:column;gap:26px}
+.hero{padding:48px 54px 34px;min-height:430px}
+.social-rail{position:absolute;right:28px;top:38px;display:flex;flex-direction:column;gap:20px}
+.social-rail a{font:10px "DM Mono";color:#aaa;text-decoration:none;transition:.2s}
+.social-rail a:hover{color:white;transform:translateX(-3px)}
+.intro-small{font-size:26px;color:#888;margin:10px 0 0}
+.hero-title{font-size:76px;line-height:.95;margin:5px 0 14px;letter-spacing:-.03em}
+.hero-sub{font-size:22px;color:#9c9c9c;margin:0 0 22px}
+.hero-copy{max-width:720px;color:#aaa;font-size:15px;line-height:1.8;margin:0}
+.hero-copy a{color:#eee}
+.ticker{border-top:1px solid #242424;margin-top:48px;padding-top:18px;display:flex;justify-content:space-between;font:9px "DM Mono";letter-spacing:.28em;color:#666}
+.section,.project-feature,.media-section,.archive,.github-section,.contact{padding:42px 54px}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.section-head .eyebrow{margin:0}
+.section-index,.views,.status-pill{font:9px "DM Mono";letter-spacing:.2em;color:#777}
+.status-pill{border:1px solid #444;padding:8px 12px;color:#aaa}
+.large-copy{font-size:27px;line-height:1.55;color:#b7b7b7;max-width:850px}
+.large-copy em{color:#eee;font-style:normal}
+.tag-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:36px}
+.tag-grid span{border:1px solid #333;padding:10px 13px;font:9px "DM Mono";letter-spacing:.18em;color:#aaa}
+.project-layout{display:grid;grid-template-columns:1fr 320px;gap:50px;align-items:center}
+.project-title{font-size:82px;line-height:1;margin:0}
+.project-title span{font-family:Inter,sans-serif;font-size:40px;color:#777}
+.project-kicker{font:10px "DM Mono";letter-spacing:.22em;color:#777;margin:12px 0 22px}
+.body-copy{color:#999;line-height:1.75;font-size:14px;max-width:620px}
+.project-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0}
+.project-meta div{border-top:1px solid #333;padding-top:11px}
+.project-meta small{display:block;font:9px "DM Mono";color:#666;letter-spacing:.15em;margin-bottom:8px}
+.project-meta strong{font:10px "DM Mono";color:#bbb}
+.text-link{display:inline-block;color:#ddd;text-decoration:none;font:10px "DM Mono";letter-spacing:.18em;border-bottom:1px solid #555;padding-bottom:6px;transition:.2s}
+.text-link:hover{color:#fff;border-color:#fff;transform:translateX(4px)}
+.system-visual{height:290px;border:1px solid #282828;position:relative;display:grid;place-items:center;background:radial-gradient(circle at center,rgba(255,255,255,.035),transparent 48%)}
+.node{position:absolute;border:1px solid #555;background:#101010;padding:15px 18px;font:10px "DM Mono";letter-spacing:.2em;z-index:2}
+.user{top:32px;left:28px}.core{top:50%;left:50%;transform:translate(-50%,-50%);border-color:#aaa;box-shadow:0 0 35px rgba(255,255,255,.07)}.pro{right:28px;bottom:32px}
+.line{position:absolute;height:1px;background:#444;transform-origin:left center;width:145px}.l1{top:78px;left:84px;transform:rotate(20deg)}.l2{bottom:77px;right:75px;transform:rotate(200deg)}
+.pulse{width:170px;height:170px;border:1px solid #292929;border-radius:50%;animation:pulse 3s infinite}
+@keyframes pulse{50%{transform:scale(1.08);opacity:.45}}
+.art-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:9px}
+.art{aspect-ratio:1.25;display:grid;place-items:center;color:#666;font:10px "DM Mono";border:1px solid #292929;background:linear-gradient(135deg,#1e1e1e,#090909);filter:grayscale(1);transition:.35s}
+.art:nth-child(2),.art:nth-child(5){background:linear-gradient(145deg,#303030,#101010)}
+.art:hover{transform:translateY(-5px);filter:grayscale(0);border-color:#666;color:#ddd}
+.artifact-note{font:9px "DM Mono";color:#555;margin:17px 0 0;letter-spacing:.08em}
+.archive-title{font-size:60px;margin:0 0 40px}
+.archive-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.media-card{border:1px solid #292929;padding:20px}
+.media-art{
+  height:240px;
+  border:1px solid #333;
+  display:grid;
+  place-items:center;
+  margin-bottom:22px;
+  background:#171717;
+  overflow:hidden;
+}
+
+.media-art img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .5s ease, filter .5s ease;
+}
+
+.media-card:hover .media-art img{
+  transform:scale(1.04);
+  filter:brightness(.85);
+}
+.music-art{font-size:100px;color:#777;background:radial-gradient(circle,#252525,#0d0d0d)}
+.watch-art{font:11px "DM Mono";letter-spacing:.35em;color:#777;background:linear-gradient(135deg,#202020,#0b0b0b)}
+.media-card h3{font-family:"UnifrakturCook",Georgia,serif;font-size:32px;margin:0 0 10px}
+.media-card p:not(.eyebrow){font-size:13px;line-height:1.7;color:#888}
+.github-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.terminal{border:1px solid #383838;background:#0a0a0a;padding:20px;min-height:240px}
+.terminal-top{display:flex;gap:7px;border-bottom:1px solid #222;padding-bottom:13px;margin-bottom:18px}
+.terminal-top span{width:7px;height:7px;border:1px solid #666;border-radius:50%}
+.terminal pre{margin:0;color:#999;font:11px/1.9 "DM Mono";white-space:pre-wrap}
+.contact{min-height:300px}
+.contact-title{font-size:75px;line-height:.9;margin:10px 0 45px}
+.contact-title span{color:#666}
+.contact-row{border-top:1px solid #2a2a2a;padding-top:18px;display:flex;justify-content:space-between;gap:20px;color:#777;font-size:12px}
+.mail{color:#ddd;font:10px "DM Mono";text-decoration:none;letter-spacing:.12em}
+footer{display:flex;justify-content:space-between;color:#4f4f4f;font:9px "DM Mono";letter-spacing:.16em;padding:10px 2px 0}
+.cursor-glow{position:fixed;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.045),transparent 65%);pointer-events:none;transform:translate(-50%,-50%);z-index:-1}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}.reveal.visible{opacity:1;transform:none}
+@media(max-width:900px){.page{grid-template-columns:1fr;gap:25px}.sidebar{position:relative;top:auto;display:grid;grid-template-columns:1fr 1fr;gap:20px}.side-panel{margin:0}.project-layout,.github-grid{grid-template-columns:1fr}.system-visual{height:240px}}
+@media(max-width:650px){.topbar{height:70px;padding:0 20px}.page{width:92vw;margin-top:25px}.sidebar{grid-template-columns:1fr}.hero,.section,.project-feature,.media-section,.archive,.github-section,.contact{padding:30px 24px}.hero-title{font-size:53px}.hero-sub{font-size:17px}.large-copy{font-size:21px}.art-grid{grid-template-columns:repeat(3,1fr)}.archive-grid{grid-template-columns:1fr}.project-title,.contact-title{font-size:55px}.project-meta{grid-template-columns:1fr}.contact-row,footer{flex-direction:column}.social-rail{display:none}.signal{padding:9px 12px;font-size:9px}.identity{min-height:430px}}
+
+.photo-portrait{overflow:hidden;position:relative}
+.photo-portrait img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.05);transition:filter .4s,transform .5s}
+.photo-portrait:hover img{filter:grayscale(.15) contrast(1.05);transform:scale(1.04)}
+
+/* =========================
+   SMOOTH SCROLL & SCROLL CRAFT
+   ========================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll progress */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #fff;
+  z-index: 9999;
+  pointer-events: none;
+  transition: width 0.08s linear;
+}
+
+/* Reveal animation */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(45px);
+  filter: blur(4px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(.16, 1, .3, 1),
+    filter 0.9s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Slightly different movement for cards */
+
+.media-card,
+.project-feature,
+.github-section {
+  transition:
+    transform 0.6s cubic-bezier(.16, 1, .3, 1),
+    border-color 0.4s ease;
+}
+
+.media-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Image movement */
+
+.media-art {
+  transition: transform 0.6s cubic-bezier(.16, 1, .3, 1);
+}
+
+.media-card:hover .media-art {
+  transform: scale(1.015);
+}
+
+/* Smooth anchor positioning */
+
+section {
+  scroll-margin-top: 30px;
+}
+
+/* Disable heavy animations for users who prefer reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+
+  .scroll-progress {
+    display: none;
+  }
+}
