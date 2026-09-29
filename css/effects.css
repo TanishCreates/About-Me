@@ -1,0 +1,79 @@
+/* =========================================================
+   effects.css — loads AFTER style.css. Nothing in style.css
+   needs to change.
+   ========================================================= */
+
+/* ---------- Lenis smooth scroll (required rules) ---------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ---------- 3D background ---------- */
+#bg3d {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;            /* above the grid (-3), below the glow (-1) */
+  pointer-events: none;
+}
+
+/* Let the 3D scene show faintly through the cards.
+   Raise the last number (.66) toward .82 for a quieter background. */
+.card { background: rgba(12, 12, 12, .66); }
+
+/* ---------- Hover tilt ---------- */
+.terminal { transition: transform .5s cubic-bezier(.16, 1, .3, 1); }
+.media-card, .terminal { will-change: transform; }
+
+/* ---------- Boot intro ---------- */
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6vh 5vw;
+  background: var(--bg);
+  color: var(--soft);
+  transition: transform .9s cubic-bezier(.76, 0, .24, 1);
+}
+.boot.done { transform: translateY(-100%); }
+
+.boot-log {
+  margin: 0;
+  min-height: 9em;
+  font: 500 11px/2 "DM Mono", monospace;
+  letter-spacing: .22em;
+  color: var(--muted);
+}
+.boot-foot {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.boot-count {
+  font: 700 clamp(72px, 16vw, 180px)/.85 "UnifrakturCook", Georgia, serif;
+  color: var(--text);
+}
+.boot-label {
+  font: 9px "DM Mono", monospace;
+  letter-spacing: .3em;
+  color: var(--muted);
+}
+.boot-bar { height: 1px; margin-top: 22px; background: var(--line); }
+.boot-bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.no-boot .boot { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .boot { display: none; }
+}
